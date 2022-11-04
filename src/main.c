@@ -1,5 +1,4 @@
 #include "raylib.h"
-#include "test.h"
 
 #define SCREEN_WIDTH (800)
 #define SCREEN_HEIGHT (450)
@@ -10,9 +9,9 @@ int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, WINDOW_TITLE);
     SetTargetFPS(60);
 
-    Texture2D texture = LoadTexture(ASSETS_PATH"test.png");
+    Texture2D texture = LoadTexture(ASSETS_PATH"blue_ship.png");
+//    Rectangle rec = (Rectangle){ SCREEN_WIDTH / 2 - texture.width / 2, SCREEN_HEIGHT / 2 - texture.height / 2, texture.width, texture.height };
     TraceLog(LOG_INFO, ASSETS_PATH);
-    test();
 
     while (!WindowShouldClose()) {
         BeginDrawing();
@@ -21,6 +20,8 @@ int main() {
         const int texture_x = SCREEN_WIDTH / 2 - texture.width / 2;
         const int texture_y = SCREEN_HEIGHT / 2 - texture.height / 2;
         DrawTexture(texture, texture_x, texture_y, WHITE);
+        DrawCircleLines(texture_x + (texture.width / 2), texture_y + (texture.height / 2),
+                        (float)texture.width/2, RED);
 
         const char* text = "OMG! IT WORKS!";
         const Vector2 text_size = MeasureTextEx(GetFontDefault(), text, 20, 1);
